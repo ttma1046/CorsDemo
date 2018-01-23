@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CorsDemo.Factory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -13,6 +14,9 @@ namespace CorsDemo
             // Web API configuration and services
             var cors = new EnableCorsAttribute("www.example.com", "*", "*");
             config.EnableCors(cors);
+
+            config.SetCorsPolicyProviderFactory(new CorsPolicyFactory());
+            config.EnableCors();
 
             // Web API routes
             config.MapHttpAttributeRoutes();
